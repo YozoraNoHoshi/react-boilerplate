@@ -2,11 +2,23 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import styled from 'styled-components';
 import injectSaga from 'utils/injectSaga';
 import { RESTART_ON_REMOUNT } from 'utils/constants';
 import saga from './sagas';
-
+import Flex from '../../components/Flex';
 import { addStringAction } from './actions';
+
+const StyledButton = styled.button`
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  background: silver;
+  :hover {
+    background: gold;
+    cursor: pointer;
+  }
+`;
 
 class AddString extends PureComponent {
   constructor(props) {
@@ -23,26 +35,40 @@ class AddString extends PureComponent {
   handleSubmit = evt => {
     evt.preventDefault();
     this.props.addString(this.state.string);
+    // this.props.history.push('/');
   };
 
   render() {
     return (
-      <div className="AddString">
+      <Flex
+        sMargin="10px"
+        sPadding="10px"
+        style={{
+          boxShadow: '2px 2px 5px black',
+        }}
+      >
         <form onSubmit={this.handleSubmit}>
-          <input
-            name="string"
-            type="text"
-            value={this.state.string}
-            onChange={this.handleChange}
-          />
-          <button type="submit">Submit</button>
+          <Flex column alCenter>
+            <Flex as="label" large htmlFor="string">
+              Add a string
+            </Flex>
+            <input
+              name="string"
+              type="text"
+              value={this.state.string}
+              onChange={this.handleChange}
+            />
+            <StyledButton type="submit">Submit</StyledButton>
+          </Flex>
         </form>
-      </div>
+      </Flex>
     );
   }
 }
 
 AddString.propTypes = { addString: PropTypes.func };
+
+// The below can be moved into a separate file to split the component from the redux connected portions
 
 const withSaga = injectSaga({
   key: 'addstrings',
