@@ -4,6 +4,7 @@ const INITIAL_STATE = [];
 
 function strings(state = INITIAL_STATE, action) {
   switch (action.type) {
+    // Unused but left in just in case
     case ADD_STRING_TO_STORE: {
       if (Array.isArray(action.payload)) {
         return [...state, ...action.payload];

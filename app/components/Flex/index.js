@@ -3,15 +3,45 @@ import styled from 'styled-components';
 
 const Flex = styled.div`
   display: flex;
-  flex-direction: ${props => {
-    if (props.column) return 'column';
-    return 'row';
-  }};
+  flex-direction: ${flexDirection};
   justify-content: ${jContent};
   align-items: ${alContent};
-`;
+  ${setWidth}
+  font-size: ${fontSize};
+  ${setMargin}
+  ${setPadding}
+  `;
 
 export default Flex;
+
+function flexDirection(props) {
+  return getCSSProperties(props, { row: 'row', column: 'column' }, 'inherit');
+}
+
+function fontSize(props) {
+  return getCSSProperties(
+    props,
+    { large: '2em', small: '.75em', medium: '1.5em', normal: 'normal' },
+    'normal',
+  );
+}
+
+function setMargin({ sMargin }) {
+  if (typeof sMargin === 'number') return `margin: ${sMargin}%;`;
+  if (typeof sMargin === 'string') return `margin: ${sMargin};`;
+  return null;
+}
+function setPadding({ sPadding }) {
+  if (typeof sPadding === 'number') return `padding: ${sPadding}%;`;
+  if (typeof sPadding === 'string') return `padding: ${sPadding};`;
+  return null;
+}
+
+function setWidth({ cWidth }) {
+  if (typeof cWidth === 'number') return `width: ${cWidth}%;`;
+  if (typeof cWidth === 'string') return `width: ${cWidth};`;
+  return null;
+}
 
 function jContent(props) {
   return getCSSProperties(
