@@ -9,8 +9,8 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import styled from 'styled-components';
 
-// import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import GetString from '../GetString/Loadable';
 import AddString from '../AddString/Loadable';
@@ -18,9 +18,16 @@ import AddString from '../AddString/Loadable';
 import GlobalStyle from '../../global-styles';
 import NavBar from '../../components/NavBar';
 
+const StyledApp = styled.div`
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export default function App() {
   return (
-    <div>
+    <StyledApp>
       <NavBar />
       <Switch>
         <Route exact path="/" component={GetString} />
@@ -28,6 +35,6 @@ export default function App() {
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
-    </div>
+    </StyledApp>
   );
 }
