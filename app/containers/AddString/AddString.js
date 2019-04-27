@@ -47,6 +47,7 @@ class AddString extends PureComponent {
               Add a string
             </Flex>
             <input
+              required
               name="string"
               type="text"
               value={this.state.string}

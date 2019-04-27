@@ -29,6 +29,8 @@ class GetStrings extends PureComponent {
   }
 }
 
+GetStrings.defaultProps = { getStrings: () => {}, strings: [] };
+
 GetStrings.propTypes = { strings: PropTypes.array, getStrings: PropTypes.func };
 
 export default GetStrings;
