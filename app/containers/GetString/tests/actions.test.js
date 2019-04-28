@@ -4,16 +4,20 @@ import { GET_STRING, GET_STRING_TO_STORE } from '../../../reducers/constants';
 
 // getStrings testing seemed extraneous due ot the fact that it doesn't do anything that isn't covered by axios/the backend.
 // Testing the backend covers the function, since all it does is return a result from the backend.
+// Tested during the sagas.test.js file and axios doesn't seem to run properly on a test server
+// - seems the express backend doesn't start up in a test environment
 
-// describe('getStrings returns array of strings', async () => {
-//   const sample = ['bleh', 'aaaaa', 'bbbbbb'];
-//   await db.query(`DELETE FROM strings`);
-//   await db.query(
-//     `INSERT INTO strings (string) VALUES ($1), ($2), ($3)`,
-//     sample,
-//   );
-//   const strings = await getStrings();
-//   expect(strings).toEqual(sample);
+// describe('getStrings returns array of strings', () => {
+//   it('should get an array from the database', async () => {
+//     const sample = ['bleh', 'aaaaa', 'bbbbbb'];
+//     await db.query(`DELETE FROM strings`);
+//     await db.query(
+//       `INSERT INTO strings (string) VALUES ($1), ($2), ($3)`,
+//       sample,
+//     );
+//     const strings = await getStrings();
+//     expect(strings).toEqual(sample);
+//   });
 // });
 describe('getStringAction returns proper action', () => {
   it('should return proper action', () => {

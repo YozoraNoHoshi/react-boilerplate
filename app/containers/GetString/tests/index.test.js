@@ -1,14 +1,19 @@
 import React from 'react';
-import ShallowRenderer from 'react-test-renderer/shallow';
-
+import { Provider } from 'react-redux';
+import { browserHistory } from 'react-router-dom';
+import { shallow, mount, configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import toJson from 'enzyme-to-json';
 import GetString from '../GetString';
-import ConnectedGetString from '../index';
 import db from '../../../../server/db';
-const renderer = new ShallowRenderer();
+import ConnectedGetString from '../index';
+import configureStore from '../../../configureStore';
 
-beforeAll(() => {
-  db.query(`DELETE FROM strings`);
-  db.query(`INSERT INTO strings (string) VALUES ($1), ($2), ($3)`, [
+configure({ adapter: new Adapter() });
+
+beforeAll(async () => {
+  await db.query(`DELETE FROM strings`);
+  await db.query(`INSERT INTO strings (string) VALUES ($1), ($2), ($3)`, [
     'bleh',
     'aaaaa',
     'bbbbbb',
@@ -17,22 +22,30 @@ beforeAll(() => {
 
 describe('<GetString /> Component', () => {
   it('should render and match the snapshot', () => {
-    renderer.render(<GetString />);
-    const renderedOutput = renderer.getRenderOutput();
-    expect(renderedOutput).toMatchSnapshot();
+    const wrapper = shallow(<GetString strings={['aaaa', 'bbbbb', 'ccc']} />);
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });
+
+// Since the local backend doesn't seem to start up during testing environment, this test is disabled because it will not be an accurate snapshot
+// The snapshot is of a failed request
+
 describe('<GetString /> Connected to Redux', () => {
   it('should render and match the snapshot', () => {
-    renderer.render(<ConnectedGetString />);
-    const renderedOutput = renderer.getRenderOutput();
-    expect(renderedOutput).toMatchSnapshot();
+    const store = configureStore({}, browserHistory);
+    const wrapper = mount(
+      <Provider store={store}>
+        <ConnectedGetString />
+      </Provider>,
+    );
+    expect(toJson(wrapper)).toMatchSnapshot();
   });
 });
 
-// Test should set redux store to initial stuff, then make the component mount, and then check to make sure that store matches what database has
-// should make sure that content on page matches what database has too.
+// Do not need to test the componentDidMount because that is handled in sagas.test.js
+// All we need to test here is that the component renders and renders its prop 'strings' properly.
 
-afterAll(() => {
-  db.query(`DELETE FROM strings`);
+afterAll(async () => {
+  await db.query(`DELETE FROM strings`);
+  await db.end();
 });

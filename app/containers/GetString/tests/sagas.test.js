@@ -11,6 +11,8 @@ beforeAll(async () => {
   ]);
 });
 
+// Can be refactored to use runSaga to test the entire saga rather than testing each yield step individually
+// runSaga would save us from having to rewrite the test any time we change the saga.
 describe('test getStringsFromDB', () => {
   it('should yield results from database then put it into store by calling dispatch', () => {
     const gen = getStringsFromDB();

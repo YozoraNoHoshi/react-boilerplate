@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GetString /> Component should render and match the snapshot 1`] = `
+<Flex
+  sMargin="10px"
+  sPadding="10px"
+  style={
+    Object {
+      "boxShadow": "2px 2px 5px black",
+    }
+  }
+>
+  <Flex
+    large={true}
+  >
+    Here are all the strings we have in our database!
+  </Flex>
+  <ul>
+    <li
+      key="aaaa"
+    >
+      aaaa
+    </li>
+    <li
+      key="bbbbb"
+    >
+      bbbbb
+    </li>
+    <li
+      key="ccc"
+    >
+      ccc
+    </li>
+  </ul>
+</Flex>
+`;
+
+exports[`<GetString /> Connected to Redux should render and match the snapshot 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "injectedReducers": Object {},
+      "injectedSagas": Object {
+        "getStrings": Object {
+          "mode": "@@saga-injector/restart-on-remount",
+          "saga": [Function],
+          "task": Object {
+            "@@redux-saga/TASK": true,
+            "cancel": [Function],
+            "cont": [Function],
+            "context": Object {},
+            "end": [Function],
+            "error": [Function],
+            "id": 1,
+            "isAborted": [Function],
+            "isCancelled": [Function],
+            "isRoot": true,
+            "isRunning": [Function],
+            "joiners": Array [],
+            "meta": Object {
+              "location": undefined,
+              "name": "getStringsSaga",
+            },
+            "queue": Object {
+              "abort": [Function],
+              "addTask": [Function],
+              "cancelAll": [Function],
+              "getTasks": [Function],
+            },
+            "result": [Function],
+            "setContext": [Function],
+            "toPromise": [Function],
+          },
+        },
+      },
+      "replaceReducer": [Function],
+      "runSaga": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <ConnectFunction>
+    <withSaga(GetStrings)
+      getStrings={[Function]}
+      strings={Array []}
+    >
+      <GetStrings
+        getStrings={[Function]}
+        strings={Array []}
+      >
+        <Flex
+          sMargin="10px"
+          sPadding="10px"
+          style={
+            Object {
+              "boxShadow": "2px 2px 5px black",
+            }
+          }
+        >
+          <StyledComponent
+            forwardedComponent={
+              Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "attrs": Array [],
+                "componentStyle": ComponentStyle {
+                  "componentId": "Flex-sc-692hpc-0",
+                  "isStatic": false,
+                  "lastClassName": "fOnmvU",
+                  "rules": Array [
+                    "display:flex;flex-direction:",
+                    [Function],
+                    ";justify-content:",
+                    [Function],
+                    ";align-items:",
+                    [Function],
+                    ";",
+                    [Function],
+                    " font-size:",
+                    [Function],
+                    ";",
+                    [Function],
+                    " ",
+                    [Function],
+                  ],
+                },
+                "displayName": "Flex",
+                "foldedComponentIds": Array [],
+                "render": [Function],
+                "styledComponentId": "Flex-sc-692hpc-0",
+                "target": "div",
+                "toString": [Function],
+                "warnTooManyClasses": [Function],
+                "withComponent": [Function],
+              }
+            }
+            forwardedRef={null}
+            sMargin="10px"
+            sPadding="10px"
+            style={
+              Object {
+                "boxShadow": "2px 2px 5px black",
+              }
+            }
+          >
+            <div
+              className="Flex-sc-692hpc-0 kmIEHT"
+              style={
+                Object {
+                  "boxShadow": "2px 2px 5px black",
+                }
+              }
+            >
+              <Flex
+                large={true}
+              >
+                <StyledComponent
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [],
+                      "componentStyle": ComponentStyle {
+                        "componentId": "Flex-sc-692hpc-0",
+                        "isStatic": false,
+                        "lastClassName": "fOnmvU",
+                        "rules": Array [
+                          "display:flex;flex-direction:",
+                          [Function],
+                          ";justify-content:",
+                          [Function],
+                          ";align-items:",
+                          [Function],
+                          ";",
+                          [Function],
+                          " font-size:",
+                          [Function],
+                          ";",
+                          [Function],
+                          " ",
+                          [Function],
+                        ],
+                      },
+                      "displayName": "Flex",
+                      "foldedComponentIds": Array [],
+                      "render": [Function],
+                      "styledComponentId": "Flex-sc-692hpc-0",
+                      "target": "div",
+                      "toString": [Function],
+                      "warnTooManyClasses": [Function],
+                      "withComponent": [Function],
+                    }
+                  }
+                  forwardedRef={null}
+                  large={true}
+                >
+                  <div
+                    className="Flex-sc-692hpc-0 fOnmvU"
+                  >
+                    Here are all the strings we have in our database!
+                  </div>
+                </StyledComponent>
+              </Flex>
+              <ul />
+            </div>
+          </StyledComponent>
+        </Flex>
+      </GetStrings>
+    </withSaga(GetStrings)>
+  </ConnectFunction>
+</Provider>
+`;

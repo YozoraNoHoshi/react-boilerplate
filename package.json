@@ -10,6 +10,9 @@
     "npm": ">=5",
     "node": ">=8.15.1"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "author": "Max Stoiber",
   "license": "MIT",
   "scripts": {
