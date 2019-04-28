@@ -17,7 +17,7 @@ async function addString(newString) {
 }
 
 // Calls addString and when the promise resolves, navigate to the route.
-// Do not need to update store because upon navigation the store will be updated at new route.
+// Do not need to update store because upon navigation the store will be updated at new route by getString's sagas.
 function* addNewString(action) {
   yield call(addString, action.payload);
   // yield put({ type: ADD_STRING_TO_STORE, payload: string.string });
