@@ -27,8 +27,8 @@ describe('<GetString /> Component', () => {
   });
 });
 
-// Since the local backend doesn't seem to start up during testing environment, this test is disabled because it will not be an accurate snapshot
-// The snapshot is of a failed request
+// This test throws an error because of the backend not starting/receiving requests properly.
+// it still 'passes' but is not an accurate representation (but at least it connects to redux)
 
 describe('<GetString /> Connected to Redux', () => {
   it('should render and match the snapshot', () => {

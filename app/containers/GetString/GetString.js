@@ -3,9 +3,20 @@ import PropTypes from 'prop-types';
 import Flex from '../../components/Flex';
 
 class GetStrings extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      errorMessage: '',
+    };
+  }
+
+  // We treat the database as the source of truth, hence why we want to ensure the redux store is up to date with the current database.
   componentDidMount() {
-    // We treat the database as the source of truth, hence why we want to ensure the redux store is up to date with the current database.
-    this.props.getStrings();
+    try {
+      this.props.getStrings();
+    } catch (error) {
+      this.setState({ errorMessage: error.message });
+    }
   }
 
   showStrings = strings => {
@@ -24,6 +35,7 @@ class GetStrings extends PureComponent {
       >
         <Flex large>Here are all the strings we have in our database!</Flex>
         {this.showStrings(this.props.strings)}
+        {this.state.errorMessage && <div>{this.state.errorMessage}</div>}
       </Flex>
     );
   }
